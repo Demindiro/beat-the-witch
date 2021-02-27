@@ -38,7 +38,7 @@ rotation = 1.5708
 
 [node name="Torch" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 96, 96 )
-frame = 3
+frame = 1
 
 [node name="Torch2" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 384, 96 )
@@ -46,11 +46,10 @@ frame = 2
 
 [node name="Torch3" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 96, 256 )
+frame = 3
 
 [node name="Torch4" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 384, 256 )
-frame = 2
 
 [node name="Torch6" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 240, 192 )
-frame = 1

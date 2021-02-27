@@ -42,4 +42,3 @@ position = Vector2( 288, 192 )
 
 [node name="Torch" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 416, 192 )
-frame = 3

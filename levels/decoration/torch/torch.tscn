@@ -19,6 +19,7 @@ animations = [ {
 [node name="Torch" type="AnimatedSprite"]
 light_mask = 0
 frames = SubResource( 1 )
+frame = 3
 playing = true
 offset = Vector2( 16, 16 )
 script = ExtResource( 6 )
