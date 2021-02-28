@@ -10,10 +10,15 @@ export var delays := PoolRealArray()
 export var letter_delay := 0.1
 
 
+# godot pls fix timer
+var timer: SceneTreeTimer = null
+
+
 func _ready() -> void:
 	text = ""
 	assert(len(texts) == len(delays) - 1, "There must be N + 1 delays compared to texts")
-	yield(get_tree().create_timer(delays[0]), "timeout")
+	timer = get_tree().create_timer(delays[0]) 
+	yield(timer, "timeout")
 	for i in len(texts):
 		text = ""
 		for t in texts[i]:
@@ -21,7 +26,16 @@ func _ready() -> void:
 			if t == " ":
 				continue
 			emit_signal("new_letter")
-			yield(get_tree().create_timer(letter_delay), "timeout")
-		yield(get_tree().create_timer(delays[i + 1]), "timeout")
+			timer = get_tree().create_timer(letter_delay)
+			yield(timer, "timeout")
+		timer = get_tree().create_timer(delays[i + 1]) 
+		yield(timer, "timeout")
 	text = ""
 	emit_signal("finished")
+
+
+func _exit_tree() -> void:
+	print("ok boomer")
+	if timer != null:
+		for s in timer.get_signal_connection_list("timeout"):
+			timer.disconnect(s["signal"], s["target"], s["method"])
