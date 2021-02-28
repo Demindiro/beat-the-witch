@@ -74,15 +74,16 @@ func _physics_process(delta: float):
 		vertical_velocity += delta * gravity
 
 
-func kill() -> void:
+func kill(spawn_corpse := true) -> void:
 	if killed:
 		return
 	killed = true
-	var n: Node2D = corpse.instance()
-	n.position = get_node("Corpse").global_transform.origin
-	n.vertical_velocity = vertical_velocity
-	n.flip_h = sprite.flip_h
-	get_parent().call_deferred("add_child", n)
+	if spawn_corpse:
+		var n: Node2D = corpse.instance()
+		n.position = get_node("Corpse").global_transform.origin
+		n.vertical_velocity = vertical_velocity
+		n.flip_h = sprite.flip_h
+		get_parent().call_deferred("add_child", n)
 	queue_free()
 	emit_signal("died")
 

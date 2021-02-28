@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Crunch_01.wav-1b91071d61c97511f949a1629279d87b.sample"
+
+[deps]
+
+source_file="res://levels/3-chameleon/Crunch_01.wav"
+dest_files=[ "res://.import/Crunch_01.wav-1b91071d61c97511f949a1629279d87b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Slime_05.wav-0f6db085f27563eb43766ce27ad79256.sample"
+
+[deps]
+
+source_file="res://levels/3-chameleon/Slime_05.wav"
+dest_files=[ "res://.import/Slime_05.wav-0f6db085f27563eb43766ce27ad79256.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
