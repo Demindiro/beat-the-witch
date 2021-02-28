@@ -45,7 +45,6 @@ position = Vector2( 288, 192 )
 
 [node name="Torch" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 416, 192 )
-frame = 4
 
 [node name="From" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 128 )

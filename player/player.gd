@@ -4,7 +4,6 @@ class_name Wowie3_Player
 
 signal died
 
-
 export var speed := 32.0
 export var gravity := 9.81
 export var min_jump_height := 96.0
@@ -12,6 +11,7 @@ export var min_jump_height := 96.0
 export var corpse: PackedScene
 
 var vertical_velocity := 0.0
+var killed := false
 
 
 func _physics_process(delta: float):
@@ -45,9 +45,12 @@ func _physics_process(delta: float):
 
 
 func kill() -> void:
+	if killed:
+		return
+	killed = true
 	var n: Node2D = corpse.instance()
 	n.position = get_node("Corpse").global_transform.origin
 	n.vertical_velocity = vertical_velocity
-	get_parent().add_child(n)
+	get_parent().call_deferred("add_child", n)
 	queue_free()
 	emit_signal("died")

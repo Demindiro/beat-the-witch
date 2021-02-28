@@ -1,16 +1,11 @@
 extends Sprite
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# TODO figure out why class_name is broken
+const Wowie3_Player = preload("res://player/player.gd")
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func body_entered(node: Node) -> void:
+	var player := node as Wowie3_Player
+	if player != null:
+		player.kill()

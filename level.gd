@@ -1,6 +1,7 @@
 extends Node
 
 
+# I don't know why, but class_name flat out doesn't work :/
 const Wowie3_Level = preload("levels/level.gd")
 const Wowie3_Player = preload("player/player.gd")
 
