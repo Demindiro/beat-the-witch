@@ -91,3 +91,9 @@ func kill(spawn_corpse := true) -> void:
 func frame_changed() -> void:
 	if sprite.animation == "walking" and sprite.frame % 2 == 0:
 		emit_signal("stepped")
+
+
+func disable_movement(value: bool) -> void:
+	set_physics_process(not value)
+	if value:
+		sprite.animation = "idle"

@@ -6,13 +6,18 @@ func save_state():
 
 
 func restore_state(state) -> void:
+	var witch_gone := false
 	if state != null:
-		if state["witch_gone"]:
-			get_node("Witch").queue_free()
-			get_node("Witch dialogue").queue_free()
-			get_node("Cookie").visible = true
+		witch_gone = state["witch_gone"]
 		if state["eaten_cookie"]:
 			get_node("Cookie").queue_free()
+
+	if witch_gone:
+		get_node("Witch").queue_free()
+		get_node("Witch dialogue").queue_free()
+		get_node("Cookie").visible = true
+	else:
+		emit_signal("disable_player_movement", true)
 
 
 func has_eaten_cookie() -> bool:
@@ -21,3 +26,7 @@ func has_eaten_cookie() -> bool:
 
 func is_witch_gone() -> bool:
 	return not has_node("Witch")
+
+
+func enable_player_movement() -> void:
+	emit_signal("disable_player_movement", false)

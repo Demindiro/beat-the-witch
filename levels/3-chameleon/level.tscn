@@ -87,10 +87,11 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="Torch" parent="Torches" instance=ExtResource( 2 )]
 position = Vector2( 96, 192 )
-frame = 0
+frame = 2
 
 [node name="Torch2" parent="Torches" instance=ExtResource( 2 )]
 position = Vector2( 384, 192 )
+frame = 0
 
 [node name="Transition" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 256 )
@@ -138,6 +139,7 @@ stream = ExtResource( 9 )
 visible = false
 position = Vector2( 184, 216 )
 frames = SubResource( 7 )
+frame = 1
 playing = true
 [connection signal="change_level" from="Transition" to="." method="change_level"]
 [connection signal="change_level" from="Transition2" to="." method="change_level"]

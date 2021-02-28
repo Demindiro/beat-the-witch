@@ -18,6 +18,7 @@ onready var player: Wowie3_Player = get_node("Player")
 onready var old_player_position := player.position
 
 var corpses_per_level := {}
+var level_states := {}
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -38,11 +39,17 @@ func change_level(to: String, direction: int) -> void:
 	old_player_position = player.position - Vector2(direction * level_width, 0)
 	player.set_deferred("position", old_player_position)
 
+	level_states[level.filename] = level.save_state()
+
 	level.queue_free()
 	level = load(to).instance()
 	var e := level.connect("change_level", self, "change_level")
 	assert(e == OK)
+	e = level.connect("disable_player_movement", self, "disable_player_movement")
+	assert(e == OK)
 	call_deferred("add_child", level)
+
+	level.restore_state(level_states.get(to))
 
 	for p in corpses_per_level.get(to, PoolVector2Array()):
 		var c: Node2D = corpse_scene.instance()
@@ -68,3 +75,8 @@ func clear_corpses() -> void:
 		cleared_something = true
 	if cleared_something:
 		emit_signal("corpses_cleared")
+
+
+func disable_player_movement(value: bool) -> void:
+	if player != null:
+		player.disable_movement(value)

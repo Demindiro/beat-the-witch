@@ -51,23 +51,20 @@ rotation = 1.5708
 
 [node name="Torch" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 96, 96 )
-frame = 2
+frame = 4
 
 [node name="Torch2" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 384, 96 )
-frame = 0
+frame = 2
 
 [node name="Torch3" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 96, 256 )
-frame = 1
 
 [node name="Torch4" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 384, 256 )
-frame = 1
 
 [node name="Torch6" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 240, 192 )
-frame = 1
 
 [node name="Transition" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, 256 )
@@ -155,6 +152,7 @@ shape = SubResource( 1 )
 [connection signal="timeout" from="Witch/Timer" to="Witch" method="set_flip_h" binds= [ false ]]
 [connection signal="timeout" from="Win timer" to="Cookie" method="set_visible" binds= [ true ]]
 [connection signal="timeout" from="Win timer" to="You win!" method="set_visible" binds= [ true ]]
+[connection signal="timeout" from="Win timer" to="." method="enable_player_movement"]
 [connection signal="killed" from="Cookie" to="You win!" method="set_visible" binds= [ true ]]
 [connection signal="killed" from="Cookie" to="You win!" method="set_text" binds= [ "Gottem" ]]
 [connection signal="body_entered" from="Cookie/Area2D" to="Cookie" method="entered"]

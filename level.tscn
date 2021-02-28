@@ -20,4 +20,5 @@ position = Vector2( 48.0783, 290.278 )
 stream = ExtResource( 5 )
 [connection signal="corpses_cleared" from="." to="Clear corpses" method="play"]
 [connection signal="change_level" from="Level" to="." method="change_level"]
+[connection signal="disable_player_movement" from="Level" to="." method="disable_player_movement"]
 [connection signal="died" from="Player" to="." method="respawn"]
