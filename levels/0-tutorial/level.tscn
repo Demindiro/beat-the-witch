@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://levels/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/decoration/torch/torch.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/transition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/level.gd" type="Script" id=4]
+[ext_resource path="res://default_theme.tres" type="Theme" id=5]
 
 [node name="Level" type="TileMap"]
 tile_set = ExtResource( 1 )
@@ -21,18 +22,18 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="Torch" parent="Torches" instance=ExtResource( 2 )]
 position = Vector2( 320, 288 )
+frame = 0
 
 [node name="Torch2" parent="Torches" instance=ExtResource( 2 )]
 position = Vector2( 96, 288 )
-frame = 2
+frame = 4
 
 [node name="Torch3" parent="Torches" instance=ExtResource( 2 )]
 position = Vector2( 96, 64 )
-frame = 4
+frame = 1
 
 [node name="Torch4" parent="Torches" instance=ExtResource( 2 )]
 position = Vector2( 384, 64 )
-frame = 1
 
 [node name="Transition" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 64 )
@@ -40,10 +41,12 @@ to = "res://levels/1-spike-floor/level.tscn"
 direction = 1
 
 [node name="Label" type="Label" parent="."]
-margin_left = 187.293
-margin_top = 271.838
-margin_right = 264.293
-margin_bottom = 336.838
+margin_left = 169.794
+margin_top = 278.413
+margin_right = 387.794
+margin_bottom = 439.413
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 5 )
 text = "Use the left and right arrow keys to move"
 align = 1
 autowrap = true
@@ -52,10 +55,12 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 393.026
-margin_top = 198.107
-margin_right = 470.026
-margin_bottom = 263.107
+margin_left = 414.281
+margin_top = 213.809
+margin_right = 540.281
+margin_bottom = 334.809
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 5 )
 text = "Use the up arrow key to jump"
 align = 1
 autowrap = true
@@ -64,10 +69,12 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="."]
-margin_left = 214.645
-margin_top = 55.4018
-margin_right = 291.645
-margin_bottom = 120.402
+margin_left = 205.941
+margin_top = 58.2973
+margin_right = 401.941
+margin_bottom = 148.297
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 5 )
 text = "Use C to clear the corpses"
 align = 1
 autowrap = true
@@ -76,10 +83,12 @@ __meta__ = {
 }
 
 [node name="Label4" type="Label" parent="."]
-margin_left = 192.644
-margin_top = 175.512
-margin_right = 269.644
-margin_bottom = 240.512
+margin_left = 214.195
+margin_top = 170.238
+margin_right = 359.195
+margin_bottom = 260.238
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 5 )
 text = "Use K to kill yourself"
 align = 1
 autowrap = true
