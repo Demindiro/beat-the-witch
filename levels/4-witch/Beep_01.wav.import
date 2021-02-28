@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Beep_01.wav-984f7ae4828713f9de7b2ccfc93283b1.sample"
+
+[deps]
+
+source_file="res://levels/4-witch/Beep_01.wav"
+dest_files=[ "res://.import/Beep_01.wav-984f7ae4828713f9de7b2ccfc93283b1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

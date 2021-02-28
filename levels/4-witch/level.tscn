@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://levels/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/traps/spikes.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/decoration/torch/torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/level.gd" type="Script" id=4]
 [ext_resource path="res://levels/transition.tscn" type="PackedScene" id=5]
+[ext_resource path="res://default_theme.tres" type="Theme" id=6]
+[ext_resource path="res://levels/4-witch/dialogue.gd" type="Script" id=7]
+[ext_resource path="res://levels/4-witch/Beep_01.wav" type="AudioStream" id=8]
+[ext_resource path="res://levels/4-witch/witch.png" type="Texture" id=9]
+[ext_resource path="res://Blub_02.wav" type="AudioStream" id=10]
 
 [node name="Level" type="TileMap"]
 tile_set = ExtResource( 1 )
@@ -41,10 +46,10 @@ rotation = 1.5708
 
 [node name="Torch" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 96, 96 )
+frame = 0
 
 [node name="Torch2" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 384, 96 )
-frame = 0
 
 [node name="Torch3" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 96, 256 )
@@ -52,7 +57,7 @@ frame = 4
 
 [node name="Torch4" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 384, 256 )
-frame = 2
+frame = 4
 
 [node name="Torch6" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 240, 192 )
@@ -62,4 +67,43 @@ frame = 4
 position = Vector2( 0, 256 )
 rotation = -3.14159
 to = "res://levels/3-chameleon/level.tscn"
+
+[node name="Witch dialogue" type="Label" parent="."]
+margin_left = 160.0
+margin_top = 288.0
+margin_right = 544.0
+margin_bottom = 416.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 6 )
+text = "Beep"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+texts = PoolStringArray( "What\?", "How did you get here\?", "The guard should have stopped you!", "Unless...", "Are you The Immortal\?!", "Screw that, I\'m out." )
+delays = PoolRealArray( 2, 1.5, 3, 3, 2, 3, 2 )
+letter_delay = 0.08
+
+[node name="Beep" type="AudioStreamPlayer" parent="Witch dialogue"]
+stream = ExtResource( 8 )
+volume_db = -10.0
+
+[node name="Witch" type="Sprite" parent="."]
+position = Vector2( 256, 240 )
+texture = ExtResource( 9 )
+flip_h = true
+
+[node name="Timer" type="Timer" parent="Witch"]
+one_shot = true
+autostart = true
+
+[node name="Pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 [connection signal="change_level" from="Transition" to="." method="change_level"]
+[connection signal="finished" from="Witch dialogue" to="Pop" method="play"]
+[connection signal="finished" from="Witch dialogue" to="Witch" method="queue_free"]
+[connection signal="new_letter" from="Witch dialogue" to="Witch dialogue/Beep" method="play"]
+[connection signal="timeout" from="Witch/Timer" to="Witch" method="set_flip_h" binds= [ false ]]
