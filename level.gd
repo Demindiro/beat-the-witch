@@ -1,6 +1,9 @@
 extends Node
 
 
+signal corpses_cleared
+
+
 # I don't know why, but class_name flat out doesn't work :/
 const Wowie3_Level = preload("levels/level.gd")
 const Wowie3_Player = preload("player/player.gd")
@@ -45,6 +48,7 @@ func change_level(to: String, direction: int) -> void:
 		var c: Node2D = corpse_scene.instance()
 		c.position = p[0]
 		c.flip_h = p[1]
+		c.play_sound = false
 		call_deferred("add_child", c)
 
 
@@ -58,5 +62,9 @@ func respawn() -> void:
 
 
 func clear_corpses() -> void:
+	var cleared_something := false
 	for c in get_tree().get_nodes_in_group("corpses"):
 		c.queue_free()
+		cleared_something = true
+	if cleared_something:
+		emit_signal("corpses_cleared")

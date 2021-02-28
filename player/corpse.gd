@@ -6,10 +6,13 @@ export var vertical_velocity := 0.0
 export var max_vertical_velocity := 300.0
 
 var flip_h := false
+var play_sound := true
 
 
 func _ready() -> void:
 	get_node("Sprite").flip_v = flip_h
+	if play_sound:
+		get_node("Sound").play()
 
 
 func _physics_process(delta: float) -> void:

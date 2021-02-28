@@ -3,6 +3,8 @@ class_name Wowie3_Player
 
 
 signal died
+signal jumped
+signal stepped
 
 export var speed := 32.0
 export var gravity := 9.81
@@ -39,6 +41,7 @@ func _physics_process(delta: float):
 		#   = v^2 / g / 2
 		# <=> v = sqrt(2 * x * g)
 		vertical_velocity = -sqrt(2 * min_jump_height * gravity)
+		emit_signal("jumped")
 
 	move_and_slide(Vector2(move * speed, vertical_velocity), Vector2.UP)
 
@@ -61,6 +64,7 @@ func _physics_process(delta: float):
 		next_anim = "idle"
 	if sprite.animation != next_anim:
 		sprite.animation = next_anim
+		frame_changed()
 
 	if vertical_velocity > 0.0 and is_on_floor():
 		vertical_velocity = 0.0
@@ -81,3 +85,8 @@ func kill() -> void:
 	get_parent().call_deferred("add_child", n)
 	queue_free()
 	emit_signal("died")
+
+
+func frame_changed() -> void:
+	if sprite.animation == "walking" and sprite.frame % 2 == 0:
+		emit_signal("stepped")

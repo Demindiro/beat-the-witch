@@ -26,10 +26,11 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="Torch" parent="Torch" instance=ExtResource( 2 )]
 position = Vector2( 352, 192 )
+frame = 0
 
 [node name="Torch2" parent="Torch" instance=ExtResource( 2 )]
 position = Vector2( 128, 192 )
-frame = 2
+frame = 4
 
 [node name="From" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 256 )
