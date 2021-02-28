@@ -6,6 +6,7 @@ signal kill
 signal sleeping
 
 export var max_kills := 1
+export var sleep_delay := 1.0
 
 onready var body: AnimatedSprite = get_node("Body")
 onready var tongue: AnimationPlayer = get_node("Tongue animation") 
@@ -39,7 +40,12 @@ func animation_finished(name: String) -> void:
 		kill_count += 1
 		emit_signal("kill")
 		if kill_count >= max_kills:
-			emit_signal("sleeping")
+			yield(get_tree().create_timer(sleep_delay), "timeout")
+			sleep()
+
+
+func sleep() -> void:
+	emit_signal("sleeping")
 
 
 func _process(_delta: float) -> void:

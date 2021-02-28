@@ -2,7 +2,7 @@
 
 [ext_resource path="res://levels/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/decoration/torch/torch.tscn" type="PackedScene" id=2]
-[ext_resource path="res://levels/level.gd" type="Script" id=3]
+[ext_resource path="res://levels/3-chameleon/level.gd" type="Script" id=3]
 [ext_resource path="res://levels/transition.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/3-chameleon/chameleon.png" type="Texture" id=5]
 [ext_resource path="res://levels/3-chameleon/chameleon-eat.png" type="Texture" id=6]
@@ -87,11 +87,10 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="Torch" parent="Torches" instance=ExtResource( 2 )]
 position = Vector2( 96, 192 )
-frame = 1
+frame = 0
 
 [node name="Torch2" parent="Torches" instance=ExtResource( 2 )]
 position = Vector2( 384, 192 )
-frame = 1
 
 [node name="Transition" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 256 )
@@ -139,16 +138,12 @@ stream = ExtResource( 9 )
 visible = false
 position = Vector2( 184, 216 )
 frames = SubResource( 7 )
-frame = 1
 playing = true
-
-[node name="Sleep timer" type="Timer" parent="Chameleon"]
 [connection signal="change_level" from="Transition" to="." method="change_level"]
 [connection signal="change_level" from="Transition2" to="." method="change_level"]
 [connection signal="eat" from="Chameleon" to="Chameleon/Stick" method="play"]
 [connection signal="kill" from="Chameleon" to="Chameleon/Crunch" method="play"]
-[connection signal="sleeping" from="Chameleon" to="Chameleon/Sleep timer" method="start"]
+[connection signal="sleeping" from="Chameleon" to="Chameleon/Sleep" method="set_visible" binds= [ true ]]
+[connection signal="sleeping" from="Chameleon" to="Chameleon/Body" method="play" binds= [ "sleeping" ]]
 [connection signal="animation_finished" from="Chameleon/Tongue animation" to="Chameleon" method="animation_finished"]
 [connection signal="body_entered" from="Chameleon/Area2D" to="Chameleon" method="entered"]
-[connection signal="timeout" from="Chameleon/Sleep timer" to="Chameleon/Sleep" method="set_visible" binds= [ true ]]
-[connection signal="timeout" from="Chameleon/Sleep timer" to="Chameleon/Body" method="play" binds= [ "sleeping" ]]
