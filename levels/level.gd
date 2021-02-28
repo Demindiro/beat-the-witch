@@ -4,6 +4,7 @@ class_name Wowie30_Level
 
 signal change_level(to)
 signal disable_player_movement(disable)
+signal disable_music(disable)
 
 
 func change_level(to: String, direction: int) -> void:

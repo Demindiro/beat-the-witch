@@ -14,6 +14,7 @@ export var corpse_scene: PackedScene
 
 onready var level: Wowie3_Level = get_node("Level")
 onready var player: Wowie3_Player = get_node("Player")
+onready var music: AudioStreamPlayer = get_node("Music")
 
 onready var old_player_position := player.position
 
@@ -46,6 +47,8 @@ func change_level(to: String, direction: int) -> void:
 	var e := level.connect("change_level", self, "change_level")
 	assert(e == OK)
 	e = level.connect("disable_player_movement", self, "disable_player_movement")
+	assert(e == OK)
+	e = level.connect("disable_music", self, "disable_music")
 	assert(e == OK)
 	call_deferred("add_child", level)
 
@@ -80,3 +83,10 @@ func clear_corpses() -> void:
 func disable_player_movement(value: bool) -> void:
 	if player != null:
 		player.disable_movement(value)
+
+
+func disable_music(value: bool) -> void:
+	if value:
+		music.stop()
+	elif not music.is_playing():
+		music.play()

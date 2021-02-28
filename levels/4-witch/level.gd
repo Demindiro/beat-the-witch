@@ -18,6 +18,7 @@ func restore_state(state) -> void:
 		get_node("Cookie").visible = true
 	else:
 		emit_signal("disable_player_movement", true)
+		emit_signal("disable_music", true)
 
 
 func has_eaten_cookie() -> bool:
@@ -30,3 +31,4 @@ func is_witch_gone() -> bool:
 
 func enable_player_movement() -> void:
 	emit_signal("disable_player_movement", false)
+	emit_signal("disable_music", false)
