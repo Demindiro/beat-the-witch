@@ -51,20 +51,23 @@ rotation = 1.5708
 
 [node name="Torch" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 96, 96 )
-frame = 4
+frame = 1
 
 [node name="Torch2" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 384, 96 )
-frame = 2
+frame = 4
 
 [node name="Torch3" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 96, 256 )
+frame = 0
 
 [node name="Torch4" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 384, 256 )
+frame = 0
 
 [node name="Torch6" parent="Torches" instance=ExtResource( 3 )]
 position = Vector2( 240, 192 )
+frame = 0
 
 [node name="Transition" parent="." instance=ExtResource( 5 )]
 position = Vector2( 0, 256 )
@@ -87,7 +90,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 texts = PoolStringArray( "What\?", "How did you get here\?", "The guard should have stopped you!", "Unless...", "Are you The Immortal\?!", "Screw that, I\'m out." )
-delays = PoolRealArray( 2, 1.5, 3, 3, 2, 3, 2 )
+delays = PoolRealArray( 3.5, 1.5, 3, 3, 2, 3, 2 )
 letter_delay = 0.08
 
 [node name="Beep" type="AudioStreamPlayer" parent="Witch dialogue"]
@@ -100,6 +103,7 @@ texture = ExtResource( 9 )
 flip_h = true
 
 [node name="Timer" type="Timer" parent="Witch"]
+wait_time = 2.5
 one_shot = true
 autostart = true
 
