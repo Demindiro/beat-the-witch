@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://player/placeholder.png" type="Texture" id=1]
+[ext_resource path="res://player/player.png" type="Texture" id=1]
 [ext_resource path="res://player/corpse.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.4749, 28.9848 )
+extents = Vector2( 7.5, 14.5 )
 
 [node name="Corpse" type="KinematicBody2D" groups=[
 "corpses",
@@ -17,9 +17,10 @@ rotation = 1.57079
 z_index = 1024
 z_as_relative = false
 texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 35, 15, 29 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.472469 )
 rotation = 1.57079
 shape = SubResource( 1 )
 __meta__ = {

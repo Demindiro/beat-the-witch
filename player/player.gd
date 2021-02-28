@@ -10,8 +10,13 @@ export var min_jump_height := 96.0
 
 export var corpse: PackedScene
 
+onready var sprite: AnimatedSprite = get_node("AnimatedSprite")
+onready var corpse_position: Node2D = get_node("Corpse")
+
 var vertical_velocity := 0.0
 var killed := false
+
+var _is_on_floor_buffer := 0
 
 
 func _physics_process(delta: float):
@@ -36,6 +41,27 @@ func _physics_process(delta: float):
 		vertical_velocity = -sqrt(2 * min_jump_height * gravity)
 
 	move_and_slide(Vector2(move * speed, vertical_velocity), Vector2.UP)
+
+	# >:( godot pls
+	if is_on_floor():
+		_is_on_floor_buffer = 2
+	elif _is_on_floor_buffer > 0:
+		_is_on_floor_buffer -= 1
+	
+	if move != 0:
+		sprite.flip_h = move < 0
+		corpse_position.position.x = move * abs(corpse_position.position.x)
+
+	var next_anim: String
+	if move != 0 and _is_on_floor_buffer:
+		next_anim = "walking"
+	elif not _is_on_floor_buffer:
+		next_anim = "jumping"
+	else:
+		next_anim = "idle"
+	if sprite.animation != next_anim:
+		sprite.animation = next_anim
+
 	if vertical_velocity > 0.0 and is_on_floor():
 		vertical_velocity = 0.0
 	elif vertical_velocity < 0.0 and is_on_ceiling():
@@ -51,6 +77,7 @@ func kill() -> void:
 	var n: Node2D = corpse.instance()
 	n.position = get_node("Corpse").global_transform.origin
 	n.vertical_velocity = vertical_velocity
+	n.flip_h = sprite.flip_h
 	get_parent().call_deferred("add_child", n)
 	queue_free()
 	emit_signal("died")

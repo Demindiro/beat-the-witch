@@ -25,9 +25,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 func change_level(to: String, direction: int) -> void:
 	print("Changing level to ", to)
 
-	var corpses := PoolVector2Array()
+	var corpses := []
 	for c in get_tree().get_nodes_in_group("corpses"):
-		corpses.push_back(c.position)
+		corpses.push_back([c.position, c.flip_h])
 		c.queue_free()
 	corpses_per_level[level.filename] = corpses
 
@@ -43,7 +43,8 @@ func change_level(to: String, direction: int) -> void:
 
 	for p in corpses_per_level.get(to, PoolVector2Array()):
 		var c: Node2D = corpse_scene.instance()
-		c.position = p
+		c.position = p[0]
+		c.flip_h = p[1]
 		call_deferred("add_child", c)
 
 

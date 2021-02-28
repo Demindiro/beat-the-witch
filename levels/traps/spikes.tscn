@@ -7,7 +7,7 @@
 points = PoolVector2Array( 7.5, 2, 15, 32, 0, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 6 )
+extents = Vector2( 16, 9 )
 
 [node name="Spikes" type="Sprite"]
 texture = ExtResource( 1 )
@@ -27,6 +27,6 @@ shape = SubResource( 1 )
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 16, 26 )
+position = Vector2( 16, 23 )
 shape = SubResource( 2 )
 [connection signal="body_entered" from="Area2D" to="." method="body_entered"]
