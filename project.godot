@@ -26,7 +26,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="wowie-3"
+config/name="Beat the Witch!"
 run/main_scene="res://level.tscn"
 boot_splash/image="res://icon.png"
 boot_splash/use_filter=false
