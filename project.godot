@@ -35,6 +35,10 @@ config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
 config/windows_native_icon="res://icon.ico"
 
+[audio]
+
+output_latency.web=30
+
 [display]
 
 window/size/height=768

@@ -1,0 +1,9 @@
+Sound effects:
+  Wowie Resource Pack
+  Made by Jonas Tyroller
+  https://jonas-tyroller.itch.io/wowie-pack
+
+Font:
+  DotGothic16
+  Made by aaronbell and kobiabe
+  https://github.com/fontworks-fonts/DotGothic16
