@@ -35,7 +35,6 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
-	print("ok boomer")
 	if timer != null:
 		for s in timer.get_signal_connection_list("timeout"):
 			timer.disconnect(s["signal"], s["target"], s["method"])

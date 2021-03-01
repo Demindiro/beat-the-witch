@@ -29,5 +29,10 @@ mkdir-bin:
 	touch bin/.gdignore
 
 
+icons:
+	png2icns icon.icns icon.png
+	convert icon.png icon.ico
+
+
 clean:
 	rm -rf bin/
